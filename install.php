@@ -44,6 +44,7 @@ $flat = [
 // exit;
 
 new CheckRequirements;
+$project_name = (new SetProjectName)();
 $timezone = (new SetTimeZone)();
 // $php_version = PHP_VERSION;
 // var_dump((new CheckRequirements)());
@@ -52,4 +53,4 @@ $timezone = (new SetTimeZone)();
 
 // echo (new DrawFileSystem)($paths);
 
-echo $timezone . PHP_EOL;
+echo $timezone. ' ' . $project_name . PHP_EOL;
