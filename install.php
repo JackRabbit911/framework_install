@@ -49,9 +49,11 @@ if (!$check()) {
     echo "$warning {$check->getMessage()}". PHP_EOL;
     exit;
 }
+
+$timezone = new SetTimeZone;
 // $php_version = PHP_VERSION;
 // var_dump((new CheckRequirements)());
-echo date_default_timezone_get() . PHP_EOL;
+// echo date_default_timezone_get() . PHP_EOL;
 // echo getenv('TZ') . PHP_EOL;
 
-echo (new DrawFileSystem)($paths);
+// echo (new DrawFileSystem)($paths);
