@@ -1,5 +1,8 @@
 <?php
 
+// $w = "\x1b[31mWARNING!\x1b ";
+$warning = "\x1b[33mWARNING!\x1b[0m";
+
 include 'folder/autoload.php';
 
 
@@ -37,9 +40,18 @@ $flat = [
     'kuku',
 ];
 
-$php_version = PHP_VERSION;
-var_dump($php_version);
+// var_dump(get_loaded_extensions());
+// exit;
+
+$check = new CheckRequirements;
+
+if (!$check()) {
+    echo "$warning {$check->getMessage()}". PHP_EOL;
+    exit;
+}
+// $php_version = PHP_VERSION;
+// var_dump((new CheckRequirements)());
 echo date_default_timezone_get() . PHP_EOL;
-echo getenv('TZ') . PHP_EOL;
+// echo getenv('TZ') . PHP_EOL;
 
 echo (new DrawFileSystem)($paths);
