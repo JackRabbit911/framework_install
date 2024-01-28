@@ -2,38 +2,37 @@
 
 class SetTimeZone
 {
-    public string $timeZone;
-
-    public function __construct()
+    public function __invoke()
     {
-        $this->timeZone = date_default_timezone_get();
-        echo "Your time zone: '$this->timeZone' Y/n? ";
-        $this->prompt();
+        $timezone = date_default_timezone_get();
+        echo "Your time zone: '$timezone' Y/n? ";
+        return $this->prompt($timezone);
     }
 
     private function setTimeZone()
     {
         echo 'Enter Your time zone: ';
-        $this->timeZone = trim(fgets(STDIN));
-        $this->timeZone = trim($this->timeZone, "\x22\x20\x27");
-        echo "Ok, Your time zone is: '$this->timeZone'" . PHP_EOL;
+        $timezone = trim(fgets(STDIN));
+        $timezone = trim($timezone, "\x22\x20\x27");
+        echo "Ok, Your time zone is: '$timezone'" . PHP_EOL;
+        return $timezone;
     }
 
-    private function unknown()
+    private function unknown($timezone)
     {
         echo 'Your answer not recognized. Please enter "Y", "y" or "n" ';
-        $this->prompt();
+        return $this->prompt($timezone);
     }
 
-    private function prompt()
+    private function prompt($timezone)
     {
         $line = strtolower(trim(fgets(STDIN)));
         $confirm = match ($line) {
-            'y', '' => true,
+            'y', '' => $timezone,
             'n' => $this->setTimeZone(),
-            default => $this->unknown()
+            default => $this->unknown($timezone)
         };
 
-        $confirm;
+        return $confirm;
     }
 }

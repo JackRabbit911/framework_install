@@ -4,18 +4,19 @@ class CheckRequirements
 {
     private array $message = [];
 
-    public function __invoke()
+    public function __construct()
     {
+        $warning = "\x1b[33mWARNING!\x1b[0m";
+
         $php = $this->checkPhpVersion();
         $composer = $this->checkComposerVersion();
         $git = $this->checkGitVersion();
 
-        return ($php && $composer && $git) ? true : false;
-    }
-
-    public function getMessage()
-    {
-        return implode(PHP_EOL, $this->message);
+        if (!$php || !$composer || !$git) {
+            $message = implode(PHP_EOL, $this->message);
+            echo "$warning $message". PHP_EOL;
+            exit;
+        }
     }
 
     private function checkPhpVersion($require = '8.1.0')
