@@ -5,7 +5,7 @@ class SetTimeZone
     public function __invoke()
     {
         $timezone = date_default_timezone_get();
-        echo "Your time zone: '$timezone' Y/n? ";
+        echo "Your time zone: '$timezone'? (Y/n) ";
         return $this->prompt($timezone);
     }
 
