@@ -18,19 +18,13 @@ class SetTimeZone
         return $timezone;
     }
 
-    private function unknown($timezone)
-    {
-        echo 'Your answer not recognized. Please enter "Y", "y" or "n" ';
-        return $this->prompt($timezone);
-    }
-
     private function prompt($timezone)
     {
         $line = strtolower(trim(fgets(STDIN)));
         $confirm = match ($line) {
             'y', '' => $timezone,
             'n' => $this->setTimeZone(),
-            default => $this->unknown($timezone)
+            default => $this->prompt($timezone)
         };
 
         return $confirm;
