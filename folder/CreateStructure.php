@@ -3,6 +3,7 @@
 class CreateStructure
 {
     private array $structure;
+    private array $paths;
     private bool $isApp = true;
 
     public function __construct($structure)
@@ -13,8 +14,8 @@ class CreateStructure
     public function __invoke()
     {
         $this->isApp = $this->isApp();
-
         $this->mkDir();
+        $this->createFiles();
     }
 
     private function mkDir()
@@ -35,6 +36,8 @@ class CreateStructure
             if (!is_dir($dir)) {
                 mkdir($dir, 0775, true);
             }
+
+            $this->paths[$key] = $dir;
         }
     }
 
@@ -50,5 +53,12 @@ class CreateStructure
         };
 
         return $confirm;
+    }
+
+    private function createFiles()
+    {
+        $index = include 'folder/blanks/index.php';
+        $dir = $this->paths['entry_point'];
+        file_put_contents($dir . '/index.php', $index);
     }
 }

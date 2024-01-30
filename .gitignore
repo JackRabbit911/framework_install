@@ -1,4 +1,5 @@
 /site.zone/*
+/site/*
 
 # Alphazeta
 /app/config/deploy/*
