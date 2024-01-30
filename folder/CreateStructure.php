@@ -2,6 +2,8 @@
 
 class CreateStructure
 {
+    use InputTrait;
+
     private array $structure;
     private array $paths;
     private bool $isApp = true;
@@ -11,11 +13,12 @@ class CreateStructure
         $this->structure = $structure;
     }
 
-    public function __invoke()
+    public function __invoke($timezone)
     {
-        $this->isApp = $this->isApp();
+        $this->isApp = $this->confirm('Do You need to create application blank?');
+
         $this->mkDir();
-        $this->createFiles();
+        $this->createFiles($timezone);
     }
 
     private function mkDir()
@@ -41,24 +44,15 @@ class CreateStructure
         }
     }
 
-    private function isApp()
+    private function createFiles($timezone)
     {
-        echo "Doy need to create application blank? (Y/n) ";
-        $input = strtolower(trim(fgets(STDIN)));
+        $dir = getcwd();
+        $root_password = $this->propmpt('Enter root password for MySQL:', 'secret');
+        $content = include 'folder/blanks/docker-compose.php';
+        file_put_contents($dir . '/docker-compose.yml', $content);
 
-        $confirm = match ($input) {
-            'y', '' => true,
-            'n' => false,
-            default => $this->isApp()
-        };
-
-        return $confirm;
-    }
-
-    private function createFiles()
-    {
-        $index = include 'folder/blanks/index.php';
+        $content = include 'folder/blanks/index.php';
         $dir = $this->paths['entry_point'];
-        file_put_contents($dir . '/index.php', $index);
+        file_put_contents($dir . '/index.php', $content);
     }
 }

@@ -3,5 +3,5 @@
 return <<<FILE
 <?php
 
-echo "Hello, world!!!";
+echo "Hello, world!";
 FILE;

@@ -1,5 +1,6 @@
 /site.zone/*
 /site/*
+docker-compose*
 
 # Alphazeta
 /app/config/deploy/*
