@@ -1,6 +1,9 @@
 /site.zone/*
 /site/*
+/mysql/*
 docker-compose*
+Dockerfile
+default.conf
 
 # Alphazeta
 /app/config/deploy/*

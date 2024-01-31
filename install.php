@@ -32,6 +32,6 @@ new CheckRequirements;
 $project_name = (new SetProjectName)();
 $timezone = (new SetTimeZone)();
 $structure = (new Structure($project_name))();
-(new CreateStructure($structure))($timezone);
+(new CreateStructure($structure))($project_name, $timezone);
 
 var_dump($structure);

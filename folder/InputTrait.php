@@ -16,7 +16,7 @@ trait InputTrait
         return $confirm;
     }
 
-    protected function propmpt($string, $default = '')
+    protected function prompt($string, $default = '')
     {
         echo "$string [$default] ";
         $input = trim(fgets(STDIN));

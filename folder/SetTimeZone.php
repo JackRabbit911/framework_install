@@ -7,6 +7,6 @@ class SetTimeZone
     public function __invoke()
     {
         $timezone = date_default_timezone_get();
-        return $this->propmpt('Enter Your time zone:', $timezone);
+        return $this->prompt('Enter Your time zone:', $timezone);
     }
 }
