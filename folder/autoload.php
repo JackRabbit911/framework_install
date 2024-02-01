@@ -25,3 +25,17 @@ if (!function_exists('mb_substr_replace')) {
 		return $out;
 	}
 }
+
+function getRelativePath($root, $path)
+{
+    $arr_root = explode('/', trim($root, '/'));
+    $arr_path = explode('/', trim($path, '/'));
+    $diff_root = array_diff($arr_root, $arr_path);
+    $diff_path = array_diff($arr_path, $arr_root);
+    $up = (empty($diff_root)) ? './' : str_repeat('../', count($diff_root));
+    $down = implode('/', $diff_path);
+    $str = $up . $down . '/';
+    $str = preg_replace('/(\/){2,}/', '$1', $str);
+
+    return $str;
+}

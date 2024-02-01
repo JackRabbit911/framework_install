@@ -22,6 +22,13 @@ include 'folder/autoload.php';
 // echo preg_replace("/\[(.*?)\]/ism", "", $str);
 
 // echo getcwd();
+// echo realpath('../../');
+
+// $root = 'install/site/';
+// $path = 'install/site';
+
+// $rp = getRelativePath($root, $path);
+// var_dump($rp);
 // echo PHP_EOL;
 // exit;
 
