@@ -4,6 +4,7 @@ return <<<'FILE'
 #!{PATH2PHP}
 <?php
 
+define('DOCROOT', '{docroot}');
 define('APPPATH', './');
 define('SYSPATH', '{syspath}');
 

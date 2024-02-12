@@ -42,9 +42,6 @@ class CreateStructure
 
             $this->paths[$key] = $dir;
         }
-
-        // var_dump($this->structure);
-        // exit;
     }
 
     private function createFiles($project_name, $timezone)
@@ -69,16 +66,14 @@ class CreateStructure
         $password = $this->prompt('Enter user password:', '12345');
         $content = include 'folder/blanks/env.php';
         file_put_contents($dir . '/.env', $content);
-        // echo $this->structure['apppath'], PHP_EOL, dirname($this->structure['syspath']), PHP_EOL;
+
         exec('which php', $output);
         $path2php = $output[0];
+        $docroot = getRelativePath($this->paths['apppath'], $this->paths['entry_point']);
         $syspath = getRelativePath($this->paths['apppath'], dirname($this->paths['syspath']));
         $content = include 'folder/blanks/console.php';
-        $content = str_replace(['{PATH2PHP}', '{syspath}'], [$path2php, $syspath], $content);
+        $content = str_replace(['{PATH2PHP}', '{docroot}', '{syspath}'], [$path2php, $docroot, $syspath], $content);
         file_put_contents($dir . '/console', $content);
-
-        // var_dump($res);
-        // echo $path2php, PHP_EOL, $syspath, PHP_EOL;
 
         $dir = $this->paths['entry_point'];
         $syspath = getRelativePath($dir, dirname($this->paths['syspath']));
