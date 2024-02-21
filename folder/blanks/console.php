@@ -5,6 +5,7 @@ return <<<'FILE'
 <?php
 
 define('DOCROOT', '{docroot}');
+define('ROOTPATH' './');
 define('APPPATH', './');
 define('SYSPATH', '{syspath}');
 

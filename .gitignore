@@ -1,6 +1,7 @@
 /site.zone/*
 /site/*
 /mysql/*
+/html/*
 docker-compose*
 Dockerfile
 default.conf
