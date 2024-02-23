@@ -2,7 +2,7 @@
 
 class DrawFileSystem
 {
-    public function draw($paths, $project_name)
+    public function draw($structure)
     {
         $lines = [];
         $s = '   ';
@@ -10,7 +10,7 @@ class DrawFileSystem
         $i = '│';
         $l = '└';
 
-        $paths = $this->santize_paths($paths, $project_name);
+        $paths = $this->santize_paths($structure);
 
         foreach ($paths as $path) {
             $key = dirname($path) ?? 'root';
@@ -50,15 +50,16 @@ class DrawFileSystem
         return mb_substr_replace(implode('', $lines), ' ', 0, 1);
     }
 
-    private function santize_paths($paths, $project_name)
+    private function santize_paths($structure)
     {
         $root = basename(getcwd());
-        $replace = "$root/$project_name";
+        $replace = "$root/{$structure['project_name']}";
 
-        foreach ($paths as $path) {
+        foreach ($structure['structure'] as $key => $path) {
             $path = str_replace('root/site.zone', $replace, $path);
             $str = '';
             $arr = explode('/', $path);
+
             foreach ($arr as $item) {
                 $str .= $item . '/';
                 $full[] = rtrim($str, '/');
