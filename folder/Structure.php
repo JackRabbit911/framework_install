@@ -3,26 +3,27 @@
 class Structure
 {
     private DrawFileSystem $draw;
-    private string $projectName;
+    // private string $projectName;
+    // private array $structure;
 
-    public function __construct($project_name)
+    public function __construct()
     {
         $this->draw = new DrawFileSystem();
-        $this->projectName = $project_name;
+        // $this->projectName = $project_name;
+        // $this->structure = $structure;
     }
-    public function __invoke()
-    {
-        $structure = include 'default_structure.php';
 
-        echo 'Default structure:' . PHP_EOL . PHP_EOL;
-        echo $this->draw->draw($structure, $this->projectName) . PHP_EOL;
+    public function __invoke($structure)
+    {
+        echo 'Default structure:' . PHP_EOL;
+        echo $this->draw->draw($structure);
                
         return $this->prompt($structure);
     }
 
     private function prompt($structure)
     {
-        echo 'Are You confirm? (Y/n) ';
+        echo PHP_EOL, 'Are You confirm? (Y/n) ';
         $input = strtolower(trim(fgets(STDIN)));
 
         $confirm = match ($input) {
@@ -37,21 +38,21 @@ class Structure
     private function interactive($structure)
     {
         $root = basename(getcwd());
-        $basepath = "$root/$this->projectName";
+        $basepath = "$root/{$structure['projectName']}";
 
-        echo "Enter path to vendor, relative '$basepath' folder: ";
-        $structure['syspath'] = ($this->inputHandle($basepath, 'vendor')) ?: $structure['syspath'];
+        echo "Enter path to vendor, relative '$basepath/' folder: ";
+        $structure['syspath'] = ($this->inputHandle($basepath, 'vendor')) ?: '';
         
-        echo "Enter path to app, relative '$basepath' folder: ";
-        $structure['apppath'] = ($this->inputHandle($basepath, 'app')) ?: $structure['apppath'];
+        echo "Enter path to app, relative '$basepath/' folder: ";
+        $structure['apppath'] = ($this->inputHandle($basepath, 'app')) ?: '';
 
-        echo "Enter path to document root, relative '$basepath' folder: ";
-        $structure['docroot'] = ($this->inputHandle($basepath)) ?: $structure['docroot'];
+        echo "Enter path to document root, relative '$basepath/' folder: ";
+        $structure['docroot'] = ($this->inputHandle($basepath)) ?: '';
 
-        echo "Enter path to index.php, relative '$basepath' folder: ";
-        $structure['entry_point'] = ($this->inputHandle($basepath)) ?: $structure['entry_point'];
+        echo "Enter path to index.php, relative '{$structure['docroot']}/' folder: ";
+        $structure['entry_point'] = ($this->inputHandle($structure['docroot'])) ?: '';
 
-        echo $this->draw->draw($structure, $this->projectName);
+        echo $this->draw->draw($structure);
 
         return $this->prompt($structure);
     }
@@ -72,10 +73,11 @@ class Structure
 
     private function santize(&$structure)
     {
+        
         $root = basename(getcwd());
-        $replace = "$root/$this->projectName";
+        $replace = "$root/{$structure['project_name']}";
 
-        foreach ($structure as &$path)
+        foreach ($structure['structure'] as &$path)
         {
             $path = str_replace('root/site.zone', $replace, $path);
         }
