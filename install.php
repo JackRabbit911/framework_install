@@ -1,17 +1,42 @@
 <?php
 
-$warning = "\x1b[33mWARNING!\x1b[0m";
-
 include 'folder/autoload.php';
 
 // system('clear');
-// var_dump($argv); exit;
 new CheckRequirements;
 $handler = (new CheckArgument)($argv);
 $structure = $handler();
-// $project_name = (new SetProjectName)();
-// $timezone = (new SetTimeZone)();
-// $structure = (new Structure($project_name))();
+
+echo PHP_EOL, 'Installation begins', PHP_EOL, PHP_EOL;
+$make = new MkAppSys($structure);
+// $msg = $make->app();
+// echo PHP_EOL, $msg, PHP_EOL;
+// $msg = $make->vendor();
+// echo $msg, PHP_EOL;
+
+$mkDir = (new MkDir($structure));
+
+// $msg = $mkDir->writable();
+// echo $msg, PHP_EOL;
+
+// $msg = $mkDir->docroot();
+// echo $msg, PHP_EOL;
+
+$mkFiles = new MkFiles($structure);
+
+$msg = $mkFiles->dockerFiles();
+echo $msg, PHP_EOL;
+
+// $msg = $mkFiles->env();
+// echo $msg, PHP_EOL;
+
+// $msg = $mkFiles->console();
+// echo $msg, PHP_EOL;
+
+// $msg = $mkFiles->index();
+// echo $msg, PHP_EOL;
+
+
 // (new CreateStructure($structure))($project_name, $timezone);
 
-var_dump($structure);
+// var_dump($structure);

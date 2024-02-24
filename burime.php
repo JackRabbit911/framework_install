@@ -5,8 +5,10 @@ return [
     'structure' => [        
         'docroot' => "root/buri.me/www",
         'entry_point' => "root/buri.me/www/public",
-        'syspath' => "root/buri.me/vendor",
+        'index' => "root/buri.me/www/public/index.php",
         'apppath' => "root/buri.me/application",
+        'syspath' => "root/buri.me/vendor",
+        'writable' => "root/buri.me/writable",
     ],
     'database' => [
         'root_pswd' => 'secret',

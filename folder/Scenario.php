@@ -22,7 +22,6 @@ class Scenario
 
         foreach ($structure['structure'] as &$path) {
             $path = str_replace('root', $replace, $path);
-            $path = str_replace("$replace/", '', $path);
         }
 
         if (!isset($structure['timezone'])) {
