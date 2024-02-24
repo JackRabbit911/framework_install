@@ -5,9 +5,10 @@ return <<<'FILE'
 <?php
 
 define('DOCROOT', '{docroot}');
-define('ROOTPATH' './');
-define('APPPATH', './');
+define('ROOTPATH', '{rootpath}');
+define('APPPATH', '{apppath}');
 define('SYSPATH', '{syspath}');
+define('WRITABLE', '{writable}');
 
 require_once SYSPATH . 'vendor/autoload.php';
 require_once SYSPATH . 'vendor/az/sys/src/autoload.php';

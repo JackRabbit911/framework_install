@@ -2,11 +2,13 @@
 
 return [
     'project_name' => 'site.zone',
-    'structure' => [        
+    'structure' => [
+        'rootpath' => "root/site.zone",  
         'docroot' => "root/site.zone/htdocs/www",
-        'entry_point' => "root/site.zone/htdocs/www",
-        'syspath' => "root/site.zone/www/vendor",
+        'entry_point' => "root/site.zone/htdocs/www/index.php",
         'apppath' => "root/site.zone/www/application",
+        'syspath' => "root/site.zone/www/vendor",
+        'writable' => "root/site.zone/www/writable",
     ],
     'database' => [
         'root_pswd' => 'secret',
