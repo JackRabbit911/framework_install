@@ -31,10 +31,10 @@ mail:
     smtp_auth: false
     mailboxes:
         -
-            address: robot@site.zone
+            address: robot@$project_name
             password: ''
             name: $project_name
 ide:
     search: '/var/www/site.zone'
-    replace: 'vscode://file/home/alx/www/repo1/site.zone'
+    replace: 'vscode://file/home/alx/www/$root/$project_name'
 FILE;

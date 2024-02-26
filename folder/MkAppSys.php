@@ -15,17 +15,21 @@ class MkAppSys
         $current = basename(getcwd());
         $path = str_replace("$current/", '', $path);
 
-        $command = 'git clone https://github.com/JackRabbit911/az_framework_application ' . $path;
-        exec($command);
-        
-        if (is_dir($path . '/.git')) {
-            exec('rm -Rf ' . $path . '/.git');
-            $return = "\x1b[32mApplication was installed successful\x1b[0m";
+        if (isset($this->structure['application'])) {
+            $source = $this->structure['application'];
+            $own_app = true;
         } else {
-            $return = 'We have some problem...';
+            $source = 'git clone https://github.com/JackRabbit911/az_framework_application';
+            $own_app = false;
+        }
+        
+        exec($source . ' ' . $path);
+        
+        if (!$own_app && is_dir($path . '/.git')) {
+            exec('rm -Rf ' . $path . '/.git');
         }
 
-        return $return;
+        return "\x1b[32mApplication was installed successful\x1b[0m";
     }
 
     public function vendor()
@@ -34,8 +38,6 @@ class MkAppSys
 
         $path = $this->structure['structure']['syspath'];
         $path = str_replace(basename($pwd) . '/', '', $path) . '/az';
-
-        // var_dump($path); exit;
 
         if (!file_exists($path)) {
             mkdir($path, 0775, true);           

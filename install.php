@@ -2,19 +2,19 @@
 
 include 'folder/autoload.php';
 
-// system('clear');
+system('clear');
+
 new CheckRequirements;
 $handler = (new CheckArgument)($argv);
 $structure = $handler();
 
 echo PHP_EOL, 'Installation begins', PHP_EOL, PHP_EOL;
 $make = new MkAppSys($structure);
-// $msg = $make->app();
-// echo $msg, PHP_EOL;
-// exit;
-// $msg = $make->vendor();
-// echo $msg, PHP_EOL;
-// exit;
+$msg = $make->app();
+echo $msg, PHP_EOL;
+
+$msg = $make->vendor();
+echo $msg, PHP_EOL;
 
 $mkDir = (new MkDir($structure));
 
@@ -36,9 +36,7 @@ $msg = $mkFiles->console();
 echo $msg, PHP_EOL;
 
 $msg = $mkFiles->index();
-echo $msg, PHP_EOL;
+echo $msg, PHP_EOL, PHP_EOL;
 
-
-// (new CreateStructure($structure))($project_name, $timezone);
-
-// var_dump($structure);
+echo 'Insallation is complete!', PHP_EOL;
+echo 'Up Your docker container and go to localhost', PHP_EOL;

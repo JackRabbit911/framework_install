@@ -6,7 +6,6 @@ class Scenario
 
     public function __construct(string $file = './folder/default_structure.php')
     {
-        // var_dump(realpath('./'), __DIR__); exit;
         if (!is_file($file)) {
             $file = './' . $file;
         }

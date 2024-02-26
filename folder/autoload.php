@@ -28,12 +28,23 @@ if (!function_exists('mb_substr_replace')) {
 
 function getRelativePath($root, $path)
 {
+    if ($root === $path) {
+        return './';
+    }
+
     $arr_root = explode('/', trim($root, '/'));
     $arr_path = explode('/', trim($path, '/'));
-    $diff_root = array_diff($arr_root, $arr_path);
-    $diff_path = array_diff($arr_path, $arr_root);
-    $up = (empty($diff_root)) ? './' : str_repeat('../', count($diff_root));
-    $down = implode('/', $diff_path);
+
+    foreach ($arr_root as $key => &$val) {
+        if (isset($arr_path[$key]) && $val === $arr_path[$key]) {
+            array_shift($arr_root);
+            array_shift($arr_path);
+        }
+    }
+
+    $up = (empty($arr_root)) ? './' : str_repeat('../', count($arr_root));
+    $down = implode('/', $arr_path);
+
     $str = $up . $down . '/';
     $str = preg_replace('/(\/){2,}/', '$1', $str);
 
