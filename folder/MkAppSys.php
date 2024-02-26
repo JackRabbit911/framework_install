@@ -19,11 +19,11 @@ class MkAppSys
             $source = $this->structure['application'];
             $own_app = true;
         } else {
-            $source = 'git clone https://github.com/JackRabbit911/az_framework_application';
+            $source = 'https://github.com/JackRabbit911/az_framework_application';
             $own_app = false;
         }
         
-        exec($source . ' ' . $path);
+        exec("git clone $source $path");
         
         if (!$own_app && is_dir($path . '/.git')) {
             exec('rm -Rf ' . $path . '/.git');
@@ -37,7 +37,7 @@ class MkAppSys
         $pwd = getcwd();
 
         $path = $this->structure['structure']['syspath'];
-        $path = str_replace(basename($pwd) . '/', '', $path) . '/az';
+        $path = str_replace(basename($pwd) . '/', '', $path) . 'vendor/az';
 
         if (!file_exists($path)) {
             mkdir($path, 0775, true);           

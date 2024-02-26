@@ -16,6 +16,5 @@ return [
         'username' => 'test',
         'password' => '12345',
     ],
-    'application' => 'https://github.com/JackRabbit911/az_framework_application',
-    'system' => 'https://github.com/JackRabbit911/az_framework',
+    // 'application' => 'https://github.com/JackRabbit911/az_framework_application',
 ];
