@@ -37,7 +37,7 @@ class MkAppSys
         $pwd = getcwd();
 
         $path = $this->structure['structure']['syspath'];
-        $path = str_replace(basename($pwd) . '/', '', $path) . 'vendor/az';
+        $path = str_replace(basename($pwd) . '/', '', $path) . '/vendor/az';
 
         if (!file_exists($path)) {
             mkdir($path, 0775, true);           
