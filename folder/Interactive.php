@@ -16,10 +16,18 @@ class Interactive
         $structure = include 'default_structure.php';
         $structure = (new Structure())($structure);
 
-        $structure['database']['root_pswd'] = $this->prompt('Enter root password for MySQL:', 'secret');
-        $structure['database']['dbname'] = $this->prompt('Enter database name:', 'test');
-        $structure['database']['username'] = $this->prompt('Enter username:', 'test');
-        $structure['database']['password'] = $this->prompt('Enter user password:', '12345');
+        $needDB = $this->confirm('Do You need database');
+
+        if ($needDB) {
+            $structure['database']['root_pswd'] = $this->prompt('Enter root password for MySQL:', 'secret');
+            $structure['database']['dbname'] = $this->prompt('Enter database name:', 'test');
+            $structure['database']['username'] = $this->prompt('Enter username:', 'test');
+            $structure['database']['password'] = $this->prompt('Enter user password:', '12345');
+
+            $structure['adminer'] = $this->confirm('Do You need database adminer?');
+        } else {
+            $structure['adminer'] = false;
+        }
 
         return $structure;
     }
