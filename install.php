@@ -51,7 +51,7 @@ if (isset($structure['adminer']) && $structure['adminer'] === true) {
 
 if (!isset($structure['dev']['install']) || $structure['dev']['install'] === false) {
     exec('rm -Rf folder');
-    unlink('.git');
+    exec('rm -Rf .git');
     unlink('.gitignore');
     unlink('install.php');
 }
