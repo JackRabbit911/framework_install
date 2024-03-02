@@ -7,7 +7,7 @@ return [
         'docroot' => "root/site.zone/htdocs/www",
         'entry_point' => "root/site.zone/htdocs/www/index.php",
         'apppath' => "root/site.zone/www/application",
-        'syspath' => "root/site.zone/www/",
+        'syspath' => "root/site.zone/www/vendor",
         'writable' => "root/site.zone/www/writable",
     ],
     'database' => [
