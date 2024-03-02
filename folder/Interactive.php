@@ -8,12 +8,12 @@ class Interactive
 
     public function __invoke()
     {
+        $structure = include 'default_structure.php';
         $structure['project_name'] = $this->prompt('Enter Your project name:', $this->defaultName);
     
         $timezone = date_default_timezone_get();
         $structure['timezone'] = $this->prompt('Enter Your time zone:', $timezone);
 
-        $structure = include 'default_structure.php';
         $structure = (new Structure())($structure);
 
         $needDB = $this->confirm('Do You need database');

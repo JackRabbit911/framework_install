@@ -3,14 +3,10 @@
 class Structure
 {
     private DrawFileSystem $draw;
-    // private string $projectName;
-    // private array $structure;
 
     public function __construct()
     {
         $this->draw = new DrawFileSystem();
-        // $this->projectName = $project_name;
-        // $this->structure = $structure;
     }
 
     public function __invoke($structure)
@@ -46,7 +42,7 @@ class Structure
         $structure['structure']['syspath'] = ($this->inputHandle($basepath, 'vendor')) ?: '';
         
         echo "Enter path to app, relative '$basepath/' folder: ";
-        $structure['structure']['apppath'] = ($this->inputHandle($basepath, 'app')) ?: '';
+        $structure['structure']['apppath'] = ($this->inputHandle($basepath, 'application')) ?: '';
 
         echo "Enter path to document root, relative '$basepath/' folder: ";
         $structure['structure']['docroot'] = ($this->inputHandle($basepath)) ?: '';
