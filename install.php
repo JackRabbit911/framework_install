@@ -51,12 +51,12 @@ if (isset($structure['adminer']) && $structure['adminer'] === true) {
     }
 }
 
-// if (!isset($structure['dev']['install']) || $structure['dev']['install'] === false) {
-//     exec('rm -Rf folder');
-//     exec('rm -Rf .git');
-//     unlink('.gitignore');
-//     unlink('install.php');
-// }
+if (!isset($structure['dev']['install']) || $structure['dev']['install'] === false) {
+    exec('rm -Rf folder');
+    exec('rm -Rf .git');
+    unlink('.gitignore');
+    unlink('install.php');
+}
 
 echo 'Insallation is complete!', PHP_EOL;
 echo 'Up Your docker container and go to localhost', PHP_EOL;
