@@ -37,10 +37,10 @@ class Structure
 
     private function interactive($structure)
     {
-        $structure['structure'] = $this->santize($structure['structure']);
+        $structure = $this->santize($structure);
 
         $root = basename(getcwd());
-        $basepath = "$root/{$structure['projectName']}";
+        $basepath = "$root/{$structure['project_name']}";
 
         echo "Enter path to vendor, relative '$basepath/' folder: ";
         $structure['structure']['syspath'] = ($this->inputHandle($basepath, 'vendor')) ?: '';
@@ -51,11 +51,11 @@ class Structure
         echo "Enter path to document root, relative '$basepath/' folder: ";
         $structure['structure']['docroot'] = ($this->inputHandle($basepath)) ?: '';
 
-        echo "Enter path to index.php, relative '{$structure['docroot']}/' folder: ";
+        echo "Enter path to index.php, relative '{$structure['structure']['docroot']}/' folder: ";
         $structure['structure']['entry_point'] = ($this->inputHandle($structure['structure']['docroot'], 'index.php')) ?: '';
 
         $structure['structure']['writable'] = str_replace('application', 'writable', $structure['structure']['apppath']);
-        
+
         echo $this->draw->draw($structure);
 
         return $this->prompt($structure);
