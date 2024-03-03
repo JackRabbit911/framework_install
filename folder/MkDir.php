@@ -32,7 +32,7 @@ class MkDir
         chmod($path . '/sessions', 0777);
         chmod($path . '/uploads', 0777);
 
-        rename('logo.png', $path . '/uploads/logo.png');
+        rename('folder/logo.png', $path . '/uploads/logo.png');
 
         return "\x1b[32mWritable folder was created\x1b[0m";
     }
