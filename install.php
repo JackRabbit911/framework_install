@@ -8,8 +8,6 @@ new CheckRequirements;
 $handler = (new CheckArgument)($argv);
 $structure = $handler();
 
-var_dump($structure);
-
 echo PHP_EOL, 'Installation begins', PHP_EOL, PHP_EOL;
 $make = new MkAppSys($structure);
 $msg = $make->app();
